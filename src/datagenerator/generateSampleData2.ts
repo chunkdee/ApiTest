@@ -325,7 +325,6 @@ function generateSampleData(userCount: number, companyCount: number, contactCoun
 function getCleanData() {
   const rawData = generateSampleData(5, 15, 10, 10, 5, 5, 5, 5, 5);
   
-  // Clean up circular references
   const cleanData = {
     users: rawData.users.map(user => ({
       id: user.id,
@@ -395,21 +394,6 @@ function getCleanData() {
       updatedAt: opportunity.updatedAt
     })),
     
-    leads: rawData.leads.map(lead => ({
-      id: lead.id,
-      firstName: lead.firstName,
-      lastName: lead.lastName,
-      email: lead.email,
-      phone: lead.phone,
-      company: lead.company,
-      profileImage: lead.profileImage,
-      status: lead.status,
-      source: lead.source,
-      assignedToId: lead.assignedToId,
-      createdAt: lead.createdAt,
-      updatedAt: lead.updatedAt
-    })),
-    
     activities: rawData.activities.map(activity => ({
       id: activity.id,
       type: activity.type,
@@ -420,9 +404,33 @@ function getCleanData() {
       contactId: activity.contactId,
       companyId: activity.companyId,
       opportunityId: activity.opportunityId,
-      leadId: activity.leadId,
       createdAt: activity.createdAt,
       updatedAt: activity.updatedAt
+    })),
+    
+    notes: rawData.notes.map(note => ({
+      id: note.id,
+      content: note.content,
+      profileId: note.profileId,
+      contactId: note.contactId,
+      companyId: note.companyId,
+      opportunityId: note.opportunityId,
+      createdAt: note.createdAt,
+      updatedAt: note.updatedAt
+    })),
+    
+    tasks: rawData.tasks.map(task => ({
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      dueDate: task.dueDate,
+      completed: task.completed,
+      profileId: task.profileId,
+      contactId: task.contactId,
+      companyId: task.companyId,
+      opportunityId: task.opportunityId,
+      createdAt: task.createdAt,
+      updatedAt: task.updatedAt
     }))
   };
 
